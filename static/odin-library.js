@@ -39,6 +39,7 @@ function displayLibrary(myLibrary) {
     for(let book of myLibrary) {
         let newLibraryRow = document.createElement("tr");
         newLibraryRow.classList.add("library-row");
+        newLibraryRow.setAttribute('data-bookId', book.id)
         libraryTable.appendChild(newLibraryRow);
     
         Object.keys(book).forEach(key => {
@@ -60,7 +61,7 @@ function displayLibrary(myLibrary) {
 
                 let statusButton = document.createElement('button');
                 statusButton.classList.add('read-status-button')
-                statusButton.setAttribute('data-book-id', book['id'])
+                statusButton.setAttribute('data-book-id', book.id)
                 statusButton.textContent = btnText;
                 newLibTd.appendChild(statusButton);
             }
@@ -96,12 +97,20 @@ const libraryTable = document.querySelector(".my-library-body")
 displayLibrary(myLibrary)
 
 // use button to alter read status
-libraryTable.addEventListener('mouseup', (event) => {
+libraryTable.addEventListener('click', (event) => {
     let target = event.target;
     if (target.classList.contains('read-status-button')) {
-        let bookId = target.getAttribute('data-book-id');
-        console.log(bookMap);
+        const bookId = target.getAttribute('data-book-id');
         bookMap.get(bookId).toggleReadStatus()
         target.textContent = readStatusText(bookMap.get(bookId).readStatus);
+    }
+    if (target.classList.contains('remove-button')) {
+        const bookRow = target.closest('tr');
+        const bookId = bookRow.getAttribute('data-bookId');
+
+        // get rid of it!
+        bookRow.remove()
+        const bookTitle = bookMap.get(bookId).title;
+        alert(`"${bookTitle}" was removed from Library.`)
     }
 })
