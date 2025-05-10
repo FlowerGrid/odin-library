@@ -22,7 +22,6 @@ function BookCover(book) {
 // create function to add a book to the library
 function addBookToLibrary(title, author, readStatus) {
     // collect information from form
-    
     const newBook = new Book(title, author, readStatus);
     myLibrary.push(newBook);
     bookMap.set(newBook.id, newBook);
@@ -101,7 +100,7 @@ libraryTable.addEventListener('click', (event) => {
     let target = event.target;
     if (target.classList.contains('read-status-button')) {
         const bookId = target.getAttribute('data-book-id');
-        bookMap.get(bookId).toggleReadStatus()
+        bookMap.get(bookId).toggleReadStatus();
         target.textContent = readStatusText(bookMap.get(bookId).readStatus);
     }
     if (target.classList.contains('remove-button')) {
@@ -111,6 +110,17 @@ libraryTable.addEventListener('click', (event) => {
         // get rid of it!
         bookRow.remove()
         const bookTitle = bookMap.get(bookId).title;
-        alert(`"${bookTitle}" was removed from Library.`)
+        alert(`"${bookTitle}" was removed from Library.`);
+        removeBook(bookId);
+        console.log(myLibrary);
+        console.log(bookMap);
     }
 })
+
+function removeBook(bookId) {
+    const index = myLibrary.findIndex(book => book.id === bookId)
+    if (index !== -1) {
+        myLibrary.splice(index, 1);
+    }
+    bookMap.delete(bookId)
+}

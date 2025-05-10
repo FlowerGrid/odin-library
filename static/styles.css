@@ -34,6 +34,7 @@ button {
 
 .my-library-table {
     padding: 16px;
+    width: 60%;
 }
 
 tr {
@@ -42,6 +43,8 @@ tr {
 
 table {
     border: 1px solid black;
+    width: 100%;
+
 }
 
 td {
