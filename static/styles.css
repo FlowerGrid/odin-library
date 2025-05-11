@@ -7,6 +7,7 @@ body {
 
 button {
     min-width: 9rem;
+    min-height: 2rem;
 }
 
 .mainframe {
@@ -15,39 +16,109 @@ button {
     flex-direction: column;
 }
 
+h1 {
+
+}
+
 .header,
 .footer {
-    background-color: #2e765e;
+    background-color: #5c503a;
     color: #fafffe;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 2rem;
+    min-height: 2.5rem;
+}
+
+.library-header h2 {
+    font-size: 40pt;
+    margin: 0;
 }
 
 .main-content {
     background-color: #fafffe;
     display: flex;
-    justify-content: center;
+    align-items: center;
     flex: 1;
+    flex-direction: column;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.library-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    background-color: #9ba192;
+    padding: 24px 18px 8px 18px;
+    padding-left: 69px;
+    box-sizing: border-box;
+    color: #fafffe;
 }
 
 .my-library-table {
     padding: 16px;
     width: 60%;
-}
+    box-sizing: border-box;
+    /* border-bottom: 18px solid #9ba192;
+    border-left: 18px solid #9ba192;
+    border-right: 18px solid #9ba192; */
+    color: #5c503a;
+    background-color: #fafffe;
 
-tr {
-    border: 1px solid black;
 }
 
 table {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
-
+    border-collapse: separate;
+    border-bottom: 18px solid #9ba192;
+    border-left: 18px solid #9ba192;
+    border-right: 18px solid #9ba192;
+    padding: 16px;
 }
 
-td {
-    padding: 4px 8px;
+tr {
+    margin-top: 16px;
 }
 
+tbody td {
+    padding-bottom: 1rem;
+}
+
+th {
+    text-align: left;
+}
+
+.remove-button {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    fill: #444; /* Set fill so it's not invisible */
+}  
+
+
+/* dialog box styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-container {
+
+    flex-direction: row;
+}
+
+.form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+}

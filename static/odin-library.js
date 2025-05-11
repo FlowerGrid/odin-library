@@ -35,6 +35,9 @@ Book.prototype.toggleReadStatus = function() {
 
 
 function displayLibrary(myLibrary) {
+    const libraryBody = document.querySelector('tbody');
+    libraryBody.innerHTML = '';
+
     for(let book of myLibrary) {
         let newLibraryRow = document.createElement("tr");
         newLibraryRow.classList.add("library-row");
@@ -89,9 +92,13 @@ function readStatusText(status) {
 }
 
 
-
-addBookToLibrary('The Hobbit', "J.R.R. Tolkien", true)
-const libraryTable = document.querySelector(".my-library-body")
+addBookToLibrary('The Hobbit', "J.R.R. Tolkien", true);
+const libraryTable = document.querySelector(".my-library-body");
+const dialogBox = document.querySelector('dialog');
+const dialogSubmitButton = document.querySelector('#add-book-button');
+const dialogCloseButton = document.querySelector('#close-dialog-button');
+const showDialogButton = document.querySelector('#show-dialog');
+const newBookForm = document.querySelector('form');
 
 displayLibrary(myLibrary)
 
@@ -124,3 +131,32 @@ function removeBook(bookId) {
     }
     bookMap.delete(bookId)
 }
+
+
+// TODO: implement logic for users to add books
+function gatherBookInfo () {
+    const newBookTitle = document.querySelector('[name="book-title-input"]').value;
+    const newBookAuthor = document.querySelector('[name="book-author-input"]').value;
+    const newBookReadStatus = document.querySelector('.checkbox').checked;
+    
+    addBookToLibrary(newBookTitle, newBookAuthor, newBookReadStatus);
+    displayLibrary(myLibrary);
+    newBookForm.reset();
+    dialogBox.close();
+}
+
+
+dialogCloseButton.addEventListener('click', (event) => {
+    dialogBox.close();
+    dialogCloseButton.preventDefault()
+})
+
+
+dialogSubmitButton.addEventListener('click', (event) => {
+    gatherBookInfo()
+    event.preventDefault();
+});
+
+showDialogButton.addEventListener('click', (event) => {
+    dialogBox.showModal();
+})

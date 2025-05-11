@@ -18,8 +18,45 @@
       </div>
     </div>
     <div class="main-content">
+
+      <!-- Add book dialog box -->
+      <dialog class="add-book-dialog" closedby="any">
+        <div class="add-book-header">
+          <h2>Add a Book to Library</h2>
+        </div>
+        <div class="add-book-form-container">
+          <form action="" method="dialog" class="add-book-form">
+            <div class="form-item">
+              <label for="book-title-input">Title</label>
+              <input type="text" name="book-title-input" id="book-title-input" required>
+            </div>
+            <div class="form-item">
+              <label for="book-author-input">Author</label>
+              <input type="text" name="book-author-input" id="book-author-input" required>
+            </div>
+            <div class="form-item checkbox-container">
+              <label for="read-status-checkbox">I have read this book.</label>
+              <input type="checkbox" class="form-item checkbox" id="read-status-checkbox">
+            </div>
+            <div class="form-item form-buttons">
+              <button class="close-dialog-button" onclick="closeDialog()" id="close-dialog-button">Close</button>
+              <input type="submit" name="add-book-button" id="add-book-button" value="Add Book">
+            </div>
+          </form>
+        </div>
+      </dialog>
+
+      <!-- Library Header -->
+
+
       <!-- Make a display for the library -->
       <div class="my-library-table">
+        <div class="library-header">
+          <h2>My LIbrary</h2>
+          <button id="show-dialog">
+            Add a Book
+          </button>
+        </div>
         <table class="my-library">
           <thead>
             <tr class="my-library-headers">
