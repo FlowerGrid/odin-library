@@ -73,12 +73,38 @@ function displayLibrary(myLibrary) {
         })
     
         let removeButtonTd = document.createElement('td');
-        let removeButton = document.createElement('button'); 
-        removeButton.classList.add('remove-button');
-        removeButton.textContent = 'Remove Book';
+        let removeButton = makeTrash();
+
         removeButtonTd.appendChild(removeButton);
         newLibraryRow.appendChild(removeButtonTd);
     }
+}
+
+function makeTrash() {
+    // const mainContent = document.querySelector('.main-content');
+    let removeButtonDiv = document.createElement('div');
+    removeButtonDiv.classList.add("remove-button-container");
+    let removeButton = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    removeButton.classList.add('make-trash');
+    // removeButton.textContent = 'Remove Book';
+    removeButton.setAttribute('xmlns', "http://www.w3.org/2000/svg");
+    removeButton.setAttribute('viewBox', "0 0 24 24");
+    removeButton.setAttribute('width', '24px')
+    removeButton.setAttribute('height', '24px')
+    removeButton.style.fill = '#ff4248';
+    
+    let svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    svgTitle.textContent = 'trash-can';
+    
+    let svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    svgPath.setAttribute('d', "M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z");
+
+    removeButton.appendChild(svgTitle);
+    removeButton.appendChild(svgPath);
+    removeButtonDiv.appendChild(removeButton);
+
+    return removeButtonDiv
+    // mainContent.appendChild(removeButtonDiv);
 }
 
 function readStatusText(status) {
@@ -110,7 +136,8 @@ libraryTable.addEventListener('click', (event) => {
         bookMap.get(bookId).toggleReadStatus();
         target.textContent = readStatusText(bookMap.get(bookId).readStatus);
     }
-    if (target.classList.contains('remove-button')) {
+    if (target.closest('.remove-button-container')) {    
+        console.log(event.target.closest('.remove-button-container'));
         const bookRow = target.closest('tr');
         const bookId = bookRow.getAttribute('data-bookId');
 
@@ -119,8 +146,6 @@ libraryTable.addEventListener('click', (event) => {
         const bookTitle = bookMap.get(bookId).title;
         alert(`"${bookTitle}" was removed from Library.`);
         removeBook(bookId);
-        console.log(myLibrary);
-        console.log(bookMap);
     }
 })
 

@@ -91,13 +91,10 @@ th {
     text-align: left;
 }
 
-.remove-button {
-    width: 24px;
-    height: 24px;
+.remove-button-container {
     cursor: pointer;
-    fill: #444; /* Set fill so it's not invisible */
-}  
-
+    align-items: center;
+}
 
 /* dialog box styling */
 form {
