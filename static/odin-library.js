@@ -165,9 +165,6 @@ function gatherBookInfo () {
     const newBookReadStatus = document.querySelector('.checkbox').checked;
     
     addBookToLibrary(newBookTitle, newBookAuthor, newBookReadStatus);
-    displayLibrary(myLibrary);
-    newBookForm.reset();
-    dialogBox.close();
 }
 
 
@@ -178,8 +175,18 @@ dialogCloseButton.addEventListener('click', (event) => {
 
 
 dialogSubmitButton.addEventListener('click', (event) => {
-    gatherBookInfo()
     event.preventDefault();
+    
+    if (!newBookForm.checkValidity()) {
+        newBookForm.reportValidity(); // Show built-in validation messages
+        return;
+    }
+
+    gatherBookInfo()
+    newBookForm.reset();
+    dialogBox.close();
+    displayLibrary(myLibrary);
+    
 });
 
 showDialogButton.addEventListener('click', (event) => {
