@@ -144,7 +144,7 @@ libraryTable.addEventListener('click', (event) => {
         // get rid of it!
         bookRow.remove()
         const bookTitle = bookMap.get(bookId).title;
-        alert(`"${bookTitle}" was removed from Library.`);
+        // alert(`"${bookTitle}" was removed from Library.`);
         removeBook(bookId);
     }
 })
